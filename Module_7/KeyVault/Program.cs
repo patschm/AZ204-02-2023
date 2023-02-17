@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 #region KeyVault
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Web;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Security.KeyVault;
 #endregion
 
 #region AppConfiguration
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using Azure.Security.KeyVault.Secrets;
-using Azure.Security.KeyVault;
 using Azure.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
@@ -24,9 +24,9 @@ namespace KeyVault
     class Program
     {
         static string tenentId = "030b09d5-7f0f-40b0-8c01-03ac319b2d71";
-        static string clientId = "d3ec77b5-8b43-4bdf-a13d-a692253f6fd2";
-        static string clientSecret = "ewS8Q~.m0kH6TwX2HjaFI7Keq~rLAoQJHVQ69cQR";
-        static string kvUri = "https://ps-sleutelbos.vault.azure.net/";
+        static string clientId = "e725e4ff-d03e-465a-b43e-88254391e471";
+        static string clientSecret = "Qic8Q~qqLq2JUPCTi2YIiA5CMlSx4TW2i.8QUaXp";
+        static string kvUri = "https://ps-sleutels.vault.azure.net/";
         
         static async Task Main(string[] args)
         {
@@ -41,7 +41,7 @@ namespace KeyVault
             ClientSecretCredential cred = new ClientSecretCredential(tenentId, clientId, clientSecret);
             SecretClient kvClient = new SecretClient(new Uri(kvUri), cred);
                 
-            var result = await kvClient.GetSecretAsync("MyKey");
+            var result = await kvClient.GetSecretAsync("geheim");
             Console.WriteLine($"Hello {result.Value?.Value}");
         }
 
@@ -69,12 +69,12 @@ namespace KeyVault
                 //var env = Environment.GetEnvironmentVariable("Bla");
                // builder.AddAzureKeyVault(new Uri(kvUri), cred);
                 builder.AddAzureAppConfiguration(opts => {
-                    opts.ConfigureKeyVault(kvopts =>
-                    {
-                        kvopts.SetCredential(new ClientSecretCredential(tenentId, clientId, clientSecret));
-                    });
-                    opts.Connect("Endpoint=https://ps-konf.azconfig.io;Id=QYOE-l9-s0:vkoWX9B8jg5mYqdH+TA9;Secret=8Cark/BY7lm7MgYHpCGJSUxjjiPAAToHQNn9ahO2/9I=")                  
-                        .Select(KeyFilter.Any, "Development")
+                    //opts.ConfigureKeyVault(kvopts =>
+                    //{
+                    //    kvopts.SetCredential(new ClientSecretCredential(tenentId, clientId, clientSecret));
+                    //});
+                    opts.Connect("Endpoint=https://ps-configu.azconfig.io;Id=fI42-l9-s0:P3z9cFqb/mIApCsmqao1;Secret=iOUVH/9qqW2BjyU+vNb/e85h/Ftr76v+tJZcyMxdTdQ=")                  
+                        .Select(KeyFilter.Any, "Production")
                        // .Select(KeyFilter.Any, "Prog") // When using labels in your configuration, import the appropriate keys for that label
                        .UseFeatureFlags();
                         
@@ -90,8 +90,8 @@ namespace KeyVault
                // });
                 IConfiguration conf = builder.Build();
 
-                Console.WriteLine($"{conf["KeyVault:MijnVal"]}");
-                Console.WriteLine($"Hello {conf["ThaKey"]}");
+                Console.WriteLine($"{conf["KeyVault:Test:MyConfig"]}");
+               // Console.WriteLine($"Hello {conf["ThaKey"]}");
 
                 IServiceCollection services = new ServiceCollection();
                 services.AddSingleton<IConfiguration>(conf).AddFeatureManagement();

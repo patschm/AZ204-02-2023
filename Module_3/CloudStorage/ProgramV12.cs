@@ -13,7 +13,7 @@ namespace CloudStorageV12
 {
     class Program
     {
-        private const string connectionString = "DefaultEndpointsProtocol=https;AccountName=psstooring;AccountKey=brdLLIRt9wFQrSc3Akh9vMCEhZoDtfNRZv+0sqO4qT8xFPUSabiLRPt/JpvaEs++aeKP915V+sOZ+AStWIAUaw==;EndpointSuffix=core.windows.net";
+        private const string connectionString = "DefaultEndpointsProtocol=https;AccountName=psstoor;AccountKey=LDmhXKay6tbl6ne4CEF0sViSrXOr8MAJ5Yg5ufSXhB0XN4SEZtvP+s9/jeQoSGTxnGqKnWzUlzPf+AStzB7tCw==;EndpointSuffix=core.windows.net";
         private static string basePath = Assembly.GetExecutingAssembly().Location;
 
         static async Task Main(string[] args)
@@ -21,11 +21,11 @@ namespace CloudStorageV12
             basePath = basePath.Substring(0, basePath.IndexOf("\\bin") + 1);
             //WriteSimple();
             //ReadSimple();
-           // WriteBlockBlob();
-            //WritePageBlob();
+            //WriteBlockBlob();
+            WritePageBlob();
             //ReadPageBlob();
             //await LeaseAsync();
-           await MiscAsync();
+          //await MiscAsync();
             //await ArchiveAsync();
 
             Console.WriteLine("Press Enter to quit");
@@ -65,7 +65,7 @@ namespace CloudStorageV12
             BlobContainerClient container = GetContainer("demo");
             BlobClient blob = container.GetBlobClient("castle0.jpg");
             BlobDownloadInfo inf = blob.Download();
-            using (FileStream fs = File.OpenWrite(basePath + "chambord0.jpg"))
+            using (FileStream fs = File.OpenWrite(basePath + "chambord10.jpg"))
             {
                 inf.Content.CopyTo(fs);
             }
@@ -104,7 +104,7 @@ namespace CloudStorageV12
         private static void WritePageBlob()
         {
             BlobContainerClient container = GetContainer("demo");
-            PageBlobClient blob = container.GetPageBlobClient("plaatgeheugen2.jpg");
+            PageBlobClient blob = container.GetPageBlobClient("plaatgeheugen.vhd");
 
             // must be a multitude of 512
             int byteCount = 1048576;
@@ -125,7 +125,7 @@ namespace CloudStorageV12
                         using (MemoryStream mem = new MemoryStream(buffer))
                         {
                             blob.UploadPages(mem, offset);
-                            offset += 2*byteCount;
+                            offset += 2*byteCount; // Moet natuurlijk 1* zijn
                         }
                     }
                     while (offset < fs.Length);

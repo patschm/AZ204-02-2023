@@ -20,7 +20,7 @@ public static class Orchestrators
         var entityId = new EntityId(nameof(CounterService), "mijn");
 
         var svc = context.CreateEntityProxy<ICounterService>(entityId);
-       // svc.Reset();
+        //svc.Reset();
         svc.Increment(5);
         var result = await svc.GetValAsync();
         log.LogInformation($"Class Based: {result}");

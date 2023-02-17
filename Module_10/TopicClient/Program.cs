@@ -8,9 +8,9 @@ namespace TopicClient
 {
     class Program
     {
-        static string EndPoint = "ps-bus.servicebus.windows.net";
+        static string EndPoint = "ps-zeur.servicebus.windows.net";
         static (string Name, string Key) SasKeyManager = ("admin", "EfzCeC6621QJZmEM67NS57B0wNVhE78swN997pgwDUY=");
-        static (string Name, string Key) SasKeyWriter = ("dumper", "sz5CLnFmZJWWhZSyVdKMNOS+BgRZTs30WQwtJt/Wdvk=");
+        static (string Name, string Key) SasKeyWriter = ("dumper", "WaycvNY4h32bnILB8f7V7NaKrtb2Ujwwt+ASbJKykSk=");
         static string TopicName = "onderwerp";
 
         static async Task Main(string[] args)
@@ -62,7 +62,7 @@ namespace TopicClient
             var sender = client.CreateSender(TopicName);
 
             Random rnd = new Random(); 
-            for(int i = 0; i < 1000; i++)
+            for(int i = 0; i < 10; i++)
             {
                 var price = rnd.Next(0, 2000);
                 var msg = new ServiceBusMessage(BinaryData.FromString($"Sold (${price})"));

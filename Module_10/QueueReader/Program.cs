@@ -13,9 +13,9 @@ namespace QueueReader
 {
     class Program
     {
-        static string EndPoint = "ps-bus.servicebus.windows.net";
-        static (string Name, string KeY) SasKeyReader = ("lezer", "L3OshdzCzgq6Kz5Z4BGc5OiXgw4IsoEIX0GzHGM+3dw=");
-        static string QueueName = "kassa";
+        static string EndPoint = "ps-zeur.servicebus.windows.net";
+        static (string Name, string KeY) SasKeyReader = ("Lezer", "kInE7YjfIGirI3Jpbda+fokPSaunosZpK+ASbKwCtaU=");
+        static string QueueName = "myqueue";
 
         static async Task Main(string[] args)
         {
@@ -48,7 +48,8 @@ namespace QueueReader
             do
             {
                 //if (nikko.Token.IsCancellationRequested) break;
-                var msg = await receiver.ReceiveMessageAsync();
+                var msg = await receiver.ReceiveMessageAsync(TimeSpan.FromMinutes(10));
+                
                 try
                 {
                     if (exceedDeliveryCount || rnd.Next(4, 10) == FAIL_NUMBER)

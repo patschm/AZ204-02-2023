@@ -6,10 +6,28 @@ using System.Text.RegularExpressions;
 
 namespace ACME.Frontend.CoreSqlConsole;
 
+
+/// <summary>
+/// Composite Indexes
+/// <code>
+///     "compositeIndexes":[  
+///         [
+///             {  
+///                 "path":"/Name",
+///                 "order":"ascending"
+///             },
+///             {
+///                 "path":"/BrandId",
+///                 "order":"descending"
+///             }
+///         ]
+///    ]
+/// </code>
+/// </summary>
 internal class Program
 {
-    private static string Host = "https://ps-kosmologie.documents.azure.com:443/";
-    private static string PrimaryKey = "dBtaqbHjxHkJFLfjvfktzbikpxezTOUaL478ha5QV9ZCkDLmTFobURWvJJvsSPRkEjQaS799moaVLf399rmB3g==";
+    private static string Host = "https://bijsaturnus.documents.azure.com:443/";
+    private static string PrimaryKey = "jU9KrxtholTqlXCeBylvq6VhgWIiLWI4FeF3ax8lntyBqt4OLnRSyHtShZdznno96lMUL6lbmBPNACDbeJlJNA==";
     private static string Database = "productDB";
     public static int Port = 443;
     public static bool EnableSSL = true;
@@ -97,6 +115,7 @@ internal class Program
                     Console.WriteLine($"[{group.Name}] {brand.Name} {item.Name}.");
                 }
                 continuationToken = fResponse.ContinuationToken;
+                Console.WriteLine(continuationToken);
             }
         }
         while (continuationToken != null);

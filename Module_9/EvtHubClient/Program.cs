@@ -10,7 +10,7 @@ namespace EvtHubClient
 {
     class Program
     {
-        private static string conStr = "Endpoint=sb://ps-hupholland.servicebus.windows.net/;SharedAccessKeyName=schrijvert;SharedAccessKey=mTFhu+aRe3eNbODrHwWXu/zaWMEI5x5rUtIpQ9w555g=;EntityPath=hubby";
+        private static string conStr = "Endpoint=sb://ps-hup.servicebus.windows.net/;SharedAccessKeyName=Schrijvert;SharedAccessKey=00FQuHQmJsooljtOqBx1iLVwhtTzqAXwz+AEhEyczCQ=;EntityPath=hubby";
         private static string hubName = "hubby";
 
         static async Task Main(string[] args)

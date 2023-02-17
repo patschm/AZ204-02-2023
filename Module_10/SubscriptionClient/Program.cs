@@ -7,8 +7,8 @@ namespace SubscriptionClient
 {
     class Program
     {
-        static string EndPoint = "ps-bus.servicebus.windows.net";
-        static (string Name, string KeY) SasKeyReader = ("leecher", "a64Ao9LdpyWqJn1kPkUhChDSUPj8kdMKbOU7mxy6MpI=");
+        static string EndPoint = "ps-zeur.servicebus.windows.net";
+        static (string Name, string KeY) SasKeyReader = ("leecher", "HiqV5QlRngwnKtOm0HkoyL6dwikQxlFbF+ASbL+5QW4=");
         static string TopicName = "onderwerp";
 
         static async Task Main(string[] args)
@@ -62,7 +62,7 @@ namespace SubscriptionClient
             var processor = client.CreateProcessor(TopicName, subscription);
             processor.ProcessMessageAsync += evtArg => {
                 Console.WriteLine($"{subscription} receiced: {evtArg.Message.Body.ToString()}");
-                //throw new Exception("Ooops");
+                throw new Exception("Ooops");
                 //Console.WriteLine(evtArg.Message.Body.ToString());
                 return Task.CompletedTask;
             };

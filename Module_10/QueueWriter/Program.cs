@@ -8,10 +8,10 @@ namespace QueueWriter
 {
     class Program
     {
-        static string EndPoint = "ps-bus.servicebus.windows.net";
+        static string EndPoint = "ps-zeur.servicebus.windows.net";
         static (string Name, string Key) SasKeyManager = ("RootManageSharedAccessKey","V7CAvAexUPQ38rs/vI03cKo4xgUctnmL7HuUlkLva+4=");
-        static (string Name, string Key)  SasKeyWriter = ("Schriver", "R9Glth3SF4WopoS6I5HMsAHk12GavhR8zs3gVzYSpN0=");
-        static string QueueName = "kassa";
+        static (string Name, string Key)  SasKeyWriter = ("Schrijvert", "30Ra9H6KHEIDG7QOuBLezj2NsZhYTIy6z+ASbHQ01/0=");
+        static string QueueName = "myqueue";
 
         static async Task Main(string[] args)
         {

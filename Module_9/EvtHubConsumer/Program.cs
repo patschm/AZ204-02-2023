@@ -14,17 +14,17 @@ namespace EvtHubConsumer
 {
     class Program
     {
-        private const string conStr = "Endpoint=sb://ps-hupholland.servicebus.windows.net/;SharedAccessKeyName=Lezert;SharedAccessKey=ew9LRHnIRx0xn774bkvMbc9dQTG6hF9km8CVq0JUdM4=;EntityPath=hubby";
+        private const string conStr = "Endpoint=sb://ps-hup.servicebus.windows.net/;SharedAccessKeyName=Lezert;SharedAccessKey=EMxcSvrw/Hlv5I0rZNu1LwFd9U05pr5kL+AEhAZVrDA=;EntityPath=hubby";
         private const string hubName = "hubby";
 
-        private const string checkpointStorage = "DefaultEndpointsProtocol=https;AccountName=pshubs;AccountKey=jXg4aclzjkVP5NoV4rR+1LCpXZ/1tCgdT/Yt+wmWOoB6Tthq/a7ld4OusnzCyZlzAbhDe5C4LvQJ+ASto5rHVA==;EndpointSuffix=core.windows.net";
+        private const string checkpointStorage = "DefaultEndpointsProtocol=https;AccountName=pshubs;AccountKey=MZHnrUbhb6RN38nplzkC4KYY24G67Zh/feOvVh3s2OMSKc7U1+JfBs37rgn/14OfU7CSxHDd3lDN+AStSW4yBQ==;EndpointSuffix=core.windows.net";
 
         static async Task Main(string[] args)
         {
             // Check!! AZ-204 book describes EvenProcessorHost from an obsolete package
             // Use this solution instead
             //await NewStyle();
-            await UsingProcessors();
+           await UsingProcessors();
             Console.WriteLine("Started...");
             Console.ReadLine();
         }
